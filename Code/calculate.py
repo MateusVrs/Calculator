@@ -1,11 +1,8 @@
-import re
-
 signals = ['+', '-', '*', '/', '^', '(', ')']
 
 
 def cleanExp(expression):
-    exp = expression.replace('e+', '^+').replace('e-', '^-')
-    exp = re.sub('[a-zA-Z]', '', expression)
+    exp = expression.replace('e+', '*10^+').replace('e-', '*10^-')
     return exp
 
 
@@ -86,5 +83,5 @@ def returnResult(expression):
     exp = cleanExp(expression)
     exp = splitExp(exp)
     exp = doParenthesis(exp)
-    exp = str(doCalculate(exp)).replace('e+', '^+').replace('e-', '^-')
+    exp = str(doCalculate(exp))
     return exp
